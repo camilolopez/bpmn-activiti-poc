@@ -1,0 +1,64 @@
+dn: dc=oc,dc=co
+objectClass: top
+objectClass: domain
+
+dn: ou=groups,dc=oc,dc=co
+objectclass: top
+objectclass: organizationalUnit
+ou: groups
+
+dn: uid=juan,dc=oc,dc=co
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: Juan Amarillo
+sn: Amarillo
+uid: juan
+userPassword: 123
+
+dn: uid=julio,dc=oc,dc=co
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: Julio Florez
+sn: Florez
+uid: julio
+userPassword: 123
+
+dn: uid=leon,dc=oc,dc=co
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: Leon de Greiff
+sn: de Greiff
+uid: leon
+userPassword: 123
+
+dn: uid=rafael,dc=oc,dc=co
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: Rafael Pombo
+sn: Pombo
+uid: rafael
+userPassword: 123
+
+dn: cn=asesores,ou=groups,dc=oc,dc=co
+objectclass: top
+objectclass: groupOfUniqueNames
+cn: asesores
+ou: asesores
+uniqueMember: uid=juan,ou=people,dc=oc,dc=co
+uniqueMember: uid=julio,ou=people,dc=oc,dc=co
+
+dn: cn=operaciones,ou=groups,dc=oc,dc=co
+objectclass: top
+objectclass: groupOfUniqueNames
+cn: asesores
+ou: asesores
+uniqueMember: uid=leon,ou=people,dc=oc,dc=co
+uniqueMember: uid=rafael,ou=people,dc=oc,dc=co
