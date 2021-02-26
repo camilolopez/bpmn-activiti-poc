@@ -10,7 +10,7 @@ targetNamespace="http://bpmn.io/bpmn"
 exporter="bpmn-js (https://demo.bpmn.io)" 
 exporterVersion="8.2.0">
   <collaboration id="Collaboration_1r3df9d">
-    <participant id="Participant_0ewlmz9" name="Flujo PQR con Tipo de envío: Nacional" processRef="Process_0fi8mrw" />
+    <participant id="Participant_0ewlmz9" name="Flujo PQR con Tipo de envío: Nacional" processRef="pqr_nacional" />
   </collaboration>
   <process id="pqr_nacional" name="PQR Nacional Workflow" isExecutable="true">
     <laneSet id="LaneSet_1gpzza5">

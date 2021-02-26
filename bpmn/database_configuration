@@ -1,0 +1,22 @@
+docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Yukon900' -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest
+
+docker exec -it <container name|ID> /bin/bash /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P Yukon900
+
+CREATE DATABASE BPMN
+GO
+USE [master]
+GO
+CREATE LOGIN [bpmndb] WITH PASSWORD=N'Bpmndb_12345', DEFAULT_DATABASE=[BPMN], CHECK_EXPIRATION=OFF, CHECK_POLICY=ON
+GO
+USE [BPMN]
+GO
+CREATE USER [bpmndb] FOR LOGIN [bpmndb]
+GO
+USE [BPMN]
+GO
+ALTER USER [bpmndb] WITH DEFAULT_SCHEMA=[dbo]
+GO
+USE [BPMN]
+GO
+ALTER ROLE [db_owner] ADD MEMBER [bpmndb]
+GO
