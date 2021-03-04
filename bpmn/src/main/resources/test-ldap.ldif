@@ -7,7 +7,12 @@ objectclass: top
 objectclass: organizationalUnit
 ou: groups
 
-dn: uid=juan,dc=oc,dc=co
+dn: ou=people,dc=oc,dc=co
+objectclass: top
+objectclass: organizationalUnit
+ou: people
+
+dn: uid=juan,ou=people,dc=oc,dc=co
 objectClass: top
 objectClass: person
 objectClass: organizationalPerson
@@ -17,7 +22,7 @@ sn: Amarillo
 uid: juan
 userPassword: 123
 
-dn: uid=julio,dc=oc,dc=co
+dn: uid=julio,ou=people,dc=oc,dc=co
 objectClass: top
 objectClass: person
 objectClass: organizationalPerson
@@ -27,7 +32,7 @@ sn: Florez
 uid: julio
 userPassword: 123
 
-dn: uid=leon,dc=oc,dc=co
+dn: uid=leon,ou=people,dc=oc,dc=co
 objectClass: top
 objectClass: person
 objectClass: organizationalPerson
@@ -37,7 +42,7 @@ sn: de Greiff
 uid: leon
 userPassword: 123
 
-dn: uid=rafael,dc=oc,dc=co
+dn: uid=rafael,ou=people,dc=oc,dc=co
 objectClass: top
 objectClass: person
 objectClass: organizationalPerson
@@ -58,7 +63,7 @@ uniqueMember: uid=julio,ou=people,dc=oc,dc=co
 dn: cn=operaciones,ou=groups,dc=oc,dc=co
 objectclass: top
 objectclass: groupOfUniqueNames
-cn: asesores
-ou: asesores
+cn: operaciones
+ou: operaciones
 uniqueMember: uid=leon,ou=people,dc=oc,dc=co
 uniqueMember: uid=rafael,ou=people,dc=oc,dc=co
