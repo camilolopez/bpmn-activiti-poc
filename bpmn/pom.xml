@@ -28,6 +28,11 @@
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-devtools</artifactId>
 				</dependency>
+				<dependency>
+					<groupId>com.unboundid</groupId>
+					<artifactId>unboundid-ldapsdk</artifactId>
+					<!-- <scope>test</scope> -->
+				</dependency>
 			</dependencies>
 		</profile>
 		<profile>
@@ -69,6 +74,7 @@
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
+			<version>7.6.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -79,11 +85,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.unboundid</groupId>
-			<artifactId>unboundid-ldapsdk</artifactId>
-			<!-- <scope>test</scope> -->
 		</dependency>
 		<dependency>
 			<groupId>io.projectreactor</groupId>
@@ -104,12 +105,12 @@
 			<artifactId>spring-security-ldap</artifactId>
 		</dependency>
 
-
 		<!-- Activiti Spring-boot -->
 		<dependency>
 			<groupId>org.activiti</groupId>
 			<artifactId>activiti-spring-boot-starter</artifactId>
 		</dependency>
+		
 		<!-- Database Drivers -->
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
@@ -121,7 +122,6 @@
 			<artifactId>h2</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 
 		<!--Utility Dependencies -->
 		<dependency>
@@ -146,6 +146,18 @@
 		  <groupId>org.mockito</groupId>
 		  <artifactId>mockito-core</artifactId>
 		  <version>3.8.0</version>
+		</dependency>
+		
+		<!-- Scheduler -->
+		<dependency>
+		    <groupId>net.javacrumbs.shedlock</groupId>
+		    <artifactId>shedlock-spring</artifactId>
+		    <version>4.21.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>net.javacrumbs.shedlock</groupId>
+		    <artifactId>shedlock-provider-jdbc-template</artifactId>
+		    <version>4.21.0</version>
 		</dependency>
 	</dependencies>
 
