@@ -10,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.oc.pc.bpmn.BpmnApplication;
@@ -19,7 +20,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = {BpmnApplication.class})
-@AutoConfigureTestDatabase
 public class IntegrationTests {
 	@Autowired private RuntimeService runtimeService;
 	

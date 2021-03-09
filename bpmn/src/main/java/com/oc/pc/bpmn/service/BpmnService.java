@@ -32,7 +32,6 @@ public class BpmnService {
 	@Autowired private RuntimeService runtimeService;
 	@Autowired private TaskService taskService;
 	@Autowired private UserGroupManager userGroupManager;
-	@Autowired private JobManager jobManager;
 	@Autowired private ManagementService managementService;
 	
 	@Autowired(required = false) private TaskScheduler taskScheduler;
