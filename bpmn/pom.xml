@@ -3,19 +3,21 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.9.RELEASE</version><!-- spring-boot version supported by Activiti -->
-		<relativePath /> <!-- lookup parent from repository -->
-	</parent>
 	<groupId>com.oc.pc</groupId>
 	<artifactId>bpmn</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>bpmn</name>
 	<description>Poc project for BPMN&apos;s Spring Boot</description>
 	<properties>
+		<activiti.version>7.1.0-M12</activiti.version>
 		<java.version>11</java.version>
+		<maven.compiler.source>11</maven.compiler.source>
+    	<maven.compiler.target>11</maven.compiler.target>
+		<mssql-jdbc.version>9.2.0.jre11</mssql-jdbc.version>
+		<shedlock-spring.version>4.21.0</shedlock-spring.version>
+		<spring-boot.version>2.4.3</spring-boot.version>
+		<spring-security-jwt.version>1.1.1.RELEASE</spring-security-jwt.version>
+		<spring-security-oauth2.version>2.5.0.RELEASE</spring-security-oauth2.version>
 	</properties>
 	<profiles>
 		<profile>
@@ -29,9 +31,9 @@
 					<artifactId>spring-boot-devtools</artifactId>
 				</dependency>
 				<dependency>
-					<groupId>com.unboundid</groupId>
-					<artifactId>unboundid-ldapsdk</artifactId>
-					<!-- <scope>test</scope> -->
+					<groupId>com.j2html</groupId>
+					<artifactId>j2html</artifactId>
+					<version>1.4.0</version>
 				</dependency>
 			</dependencies>
 		</profile>
@@ -42,12 +44,20 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>org.activiti.dependencies</groupId>
+				<groupId>org.activiti</groupId>
 				<artifactId>activiti-dependencies</artifactId>
-				<version>7.1.0.M6</version>
-				<scope>import</scope>
+				<version>${activiti.version}</version>
+				<scope>system</scope>
 				<type>pom</type>
+				<systemPath>${user.home}/.m2/repository/org/activiti/activiti-dependencies/${activiti.version}/activiti-dependencies-${activiti.version}.pom</systemPath>
 			</dependency>
+			<dependency>
+	            <groupId>org.springframework.boot</groupId>
+	            <artifactId>spring-boot-dependencies</artifactId>
+	            <version>${spring-boot.version}</version>
+	            <type>pom</type>
+	            <scope>import</scope>
+        	</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
@@ -70,6 +80,20 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security.oauth</groupId>
+			<artifactId>spring-security-oauth2</artifactId>
+			<version>${spring-security-oauth2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-jwt</artifactId>
+			<version>${spring-security-jwt.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.flywaydb</groupId>
@@ -95,26 +119,19 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.ldap</groupId>
-			<artifactId>spring-ldap-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-ldap</artifactId>
-		</dependency>
 
 		<!-- Activiti Spring-boot -->
 		<dependency>
 			<groupId>org.activiti</groupId>
 			<artifactId>activiti-spring-boot-starter</artifactId>
+			<version>${activiti.version}</version>
 		</dependency>
 		
 		<!-- Database Drivers -->
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
-			<version>9.2.0.jre11</version>
+			<version>${mssql-jdbc.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -124,39 +141,37 @@
 
 		<!--Utility Dependencies -->
 		<dependency>
-			<groupId>com.j2html</groupId>
-			<artifactId>j2html</artifactId>
-			<version>1.4.0</version>
-		</dependency>
-		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.11</version>
 		</dependency>
 		
 		<!-- Testing -->
 		<dependency>
 		    <groupId>org.hamcrest</groupId>
 		    <artifactId>hamcrest</artifactId>
-		    <version>2.2</version>
 		    <scope>test</scope>
 		</dependency>
 		<dependency>
 		  <groupId>org.mockito</groupId>
 		  <artifactId>mockito-core</artifactId>
-		  <version>3.8.0</version>
+		  <scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
 		</dependency>
 		
 		<!-- Scheduler -->
 		<dependency>
 		    <groupId>net.javacrumbs.shedlock</groupId>
 		    <artifactId>shedlock-spring</artifactId>
-		    <version>4.21.0</version>
+		    <version>${shedlock-spring.version}</version>
 		</dependency>
 		<dependency>
 		    <groupId>net.javacrumbs.shedlock</groupId>
 		    <artifactId>shedlock-provider-jdbc-template</artifactId>
-		    <version>4.21.0</version>
+		    <version>${shedlock-spring.version}</version>
 		</dependency>
 	</dependencies>
 
