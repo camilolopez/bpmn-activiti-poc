@@ -6,7 +6,7 @@ git checkout tags/7.1.0-M12 -b release/v7.1.0-M12
 mvn clean install -DskipTests
 ```
 
-#Database Configuration
+# Database Configuration
 
 `docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Yukon900' -p 1434:1433 -d mcr.microsoft.com/mssql/server:2019-latest`
 
