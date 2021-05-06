@@ -10,7 +10,7 @@ mvn clean install -DskipTests
 
 `docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Yukon900' -p 1434:1433 -d mcr.microsoft.com/mssql/server:2019-latest`
 
-`docker exec -it <container name|ID> /bin/bash /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P Yukon900`
+`docker exec -it a2ecc15b3ded /bin/bash /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P Yukon900`
 
 ```sql
 CREATE DATABASE BPMN
